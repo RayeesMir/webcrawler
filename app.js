@@ -1,0 +1,18 @@
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var logger = require('morgan');
+var path = require('path');
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+module.exports = app;
